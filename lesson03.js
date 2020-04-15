@@ -1,7 +1,7 @@
 const http = require('http');
 
 const hostname = 'kazushi-sugitani.ml';
-const port = 8124;
+const port = 80;
 
 const server = http.createServer((req, res) => {
     res.statusCode = 200;
