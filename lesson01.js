@@ -2,7 +2,7 @@ var http = require('http');
 const PORT = 80;
 
 http.createServer((request, response) => {
-    response.write("Hello Node.js!!!");
+    response.write("Hello Node.js!!!\n");
     response.end();
 }).listen(PORT);
 
