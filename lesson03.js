@@ -1,11 +1,14 @@
-var http = require('http');
-var server = http.createServer();
+const http = require('http');
 
-server.on('request', function(req, res) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.write('hello world!!!');
-    res.end();
+const hostname = 'kazushi-sugitani.ml';
+const port = 8124;
+
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello World');
 });
 
-server.listen(8124, 'localhost');
-console.log("Server listening...");
+server.listen(port, hostname, () => {
+    console.log('Server running at http://${hostname}:${port}/');
+});
