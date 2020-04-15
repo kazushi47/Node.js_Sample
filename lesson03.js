@@ -7,5 +7,5 @@ server.on('request', function(req, res) {
     res.end();
 });
 
-server.listen(8124, 'kazushi-sugitani.ml');
+server.listen(8124, 'localhost');
 console.log("Server listening...");
