@@ -6,14 +6,14 @@ const server = http.createServer();
 const template = fs.readFileSync(__dirname + '/bbs.ejs', 'utf-8');
 var posts = [];
 
-fanction renderForm(posts, res) {
+const renderForm = (posts, res) => {
     var data = ejs.render(template, {
         posts: posts
     });
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.write(data);
     res.end();
-}
+};
 
 server.on('request', (req, res) => {
     if (req.method === 'POST') {
