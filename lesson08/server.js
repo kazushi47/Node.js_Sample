@@ -1,5 +1,6 @@
 const http = require('http');
 const fs = require('fs');
+const ejs = require('ejs');
 const qs = require('querystring');
 const settings = require('./settings');
 const server = http.createServer();
