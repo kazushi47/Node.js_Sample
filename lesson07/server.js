@@ -7,6 +7,7 @@ const server = http.createServer();
 var n = 0;
 
 server.on('request', (req, res) => {
+    console.log("n++");
     n++;
     var data = ejs.render(template, {
         title: "hello",
