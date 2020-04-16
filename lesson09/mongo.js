@@ -1,9 +1,10 @@
 const MongoClient = require('mongodb').MongoClient;
 const settings = require('./settings');
 
-MongoClient.connect("mongodb://127.0.0.1/" + settings.db, (err, db) => {
+MongoClient.connect("mongodb://localhost/" + settings.db, (err, client) => {
     if (err) {return console.dir(err);}
     console.log("Connected to db");
+    const db = client.db(settings.db);
     db.collection("users", (err, collection) => {
         const docs = [
             {name: "taguchi", score: 40},
