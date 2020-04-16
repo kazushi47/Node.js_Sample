@@ -11,7 +11,7 @@ MongoClient.connect("mongodb://localhost/" + settings.db, (err, client) => {
             {name: "fkoji", score: 80},
             {name: "dotinstall", score: 60}
         ];
-        collection.insert(docs, (err, result) => {
+        collection.insertMany(docs, (err, result) => {
             console.dir(result);
         });
     });
