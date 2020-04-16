@@ -17,7 +17,7 @@ const renderForm = (posts, res) => {
 };
 
 server.on('request', (req, res) => {
-    if (req.method === 'POST') {
+    if (req.method === 'POST' && req.url == '/') {
         req.data = "";
         req.on("readable", () => {
             req.data += req.read();
