@@ -3,8 +3,10 @@ const fs = require('fs');
 const ejs = require('ejs');
 const settings = require('./settings');
 const template = fs.readFileSync(__dirname + '/hello.ejs', 'utf-8');
+const server = http.createServer();
 var n = 0;
-const server = http.createServer((req, res) => {
+
+server.on('request', (req, res) => {
     n++;
     var data = ejs.render(template, {
         title: "hello",
