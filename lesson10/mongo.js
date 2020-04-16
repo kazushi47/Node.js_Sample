@@ -10,9 +10,11 @@ MongoClient.connect(url, connectOption, (err, client) => {
     if (err) return console.dir(err);
     console.log("Connected to db");
 
-    client.db(settings.db).collection('users', (err, collection) => {
-        collection.find({name: "taguchi"}).toArray((err, items) => {
-            console.log(items);
-        });
+    const stream = collection.find().stream();
+    stream.on("data", (item) => {
+        console.log(item);
+    });
+    stream.on("end", () => {
+        console.log("finished.");
     });
 });
