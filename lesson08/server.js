@@ -20,7 +20,9 @@ server.on('request', (req, res) => {
     if (req.method === 'POST' && req.url == '/') {
         req.data = "";
         req.on("readable", () => {
-            req.data += req.read();
+            if (req.url == '/'){
+                req.data += req.read();
+            }
         });
         req.on("end", () => {
             var query = qs.parse(req.data);
