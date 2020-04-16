@@ -11,7 +11,7 @@ MongoClient.connect(url, connectOption, (err, client) => {
     console.log("Connected to db");
 
     client.db(settings.db).collection('users', (err, collection) => {
-        collection.find().toArray((err, items) => {
+        collection.find({name: "taguchi"}).toArray((err, items) => {
             console.log(items);
         });
     });
