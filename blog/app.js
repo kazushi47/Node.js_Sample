@@ -17,3 +17,6 @@ app.get('/', post.index);
 //app.put('/posts/:id/', post.update);
 //app.put('/posts/:id/', post.update);
 //app.delete('/posts/:id/', post.destroy);
+
+app.listen(8124);
+console.log('Server running...');
