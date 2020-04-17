@@ -15,7 +15,7 @@ app.get('/users/:name?', (req, res) => {
     }
 });
 app.get('/hello.txt', (req, res) => {
-    res.sendfile(__dirname + 'hello.txt');
+    res.sendfile(__dirname + '/hello.txt');
 });
 
 app.listen(8124);
