@@ -5,7 +5,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', {title: 'Hello EJS & Express!!!'});
 });
 
 app.listen(8124);
