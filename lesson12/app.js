@@ -7,8 +7,12 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
     res.send('about this page!');
 });
-app.get('/users/:name', (req, res) => {
-    res.send('hello, ' + req.params.name);
+app.get('/users/:name?', (req, res) => {
+    if (req.params.name) {
+        res.send('hello, ' + req.params.name);
+    } else {
+        res.send('nobody!');
+    }
 });
 
 app.listen(8124);
