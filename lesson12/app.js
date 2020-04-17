@@ -14,6 +14,9 @@ app.get('/users/:name?', (req, res) => {
         res.send('nobody!');
     }
 });
+app.get('/hello.txt', (req, res) => {
+    res.sendfile(__dirname + 'hello.txt');
+});
 
 app.listen(8124);
 console.log("Server running...");
