@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
     socket.on('emit_from_client', (data) => {
-        socket.emit('emit_from_server', data);
+        io.emit('emit_from_server', socket.id + ': ' + data);
     });
 });
 
