@@ -8,7 +8,10 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
     socket.on('emit_from_client', (data) => {
-        io.emit('emit_from_server', socket.id + ': ' + data);
+        socket.set('client_name', data.name);
+        socket.get('client_name', (err, name) => {
+            io.emit('emit_from_server', name + ': ' + data.msg);
+        });
     });
 });
 

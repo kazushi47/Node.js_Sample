@@ -13,6 +13,7 @@
     <div id="container">
         <p>Welcome to lesson page.</p>
         <form id="myForm">
+            <input type="text" id="name">
             <input type="text" id="msg">
             <input type="submit" value="Send">
         </form>
@@ -23,7 +24,10 @@
                 var socket = io.connect();
                 $('#myForm').submit(function(e) {
                     e.preventDefault();
-                    socket.emit('emit_from_client', $('#msg').val());
+                    socket.json.emit('emit_from_client', {
+                        msg: $('#msg').val(),
+                        name: $('#name').val()
+                    });
                     $('#msg').val('').focus();
                 });
                 socket.on('emit_from_server', function(data) {
