@@ -20,7 +20,7 @@
         <script>
             $(function() {
                 var socket = io.connect();
-                $('#myFrom').submit(function() {
+                $('#myForm').submit(function() {
                     socket.emit('emit_from_client', $('#msg').val());
                 });
             });
