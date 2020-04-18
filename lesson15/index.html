@@ -25,7 +25,7 @@
                     e.preventDefault();
                     socket.emit('emit_from_client', $('#msg').val());
                 });
-                socket.on('emit_from_server', (data) => {
+                socket.on('emit_from_server', function(data) {
                     $('#logs').append($('<li>')).text(data);
                 });
             });
