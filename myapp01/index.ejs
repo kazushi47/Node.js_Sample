@@ -12,6 +12,13 @@
     </header>
     <div id="container">
         <p>ただ今の時刻は、<%= now %>です。</p>
+        <form action="/mypage" method="post">
+            <p>名前を入力してください。</p>
+            <br>
+            <input type="text" name="name">
+            <br>
+            <input type="submit" value="Login">
+        </form>
     </div>
 </body>
 </html>
