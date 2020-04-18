@@ -1,9 +1,8 @@
 const app = require('express')();
 
 app.get('/', (req, res) => {
-    res.send('<h1>Hello World!</h1>');
+    res.sendFile(__dirname + '/index.html');
 });
 
-app.listen(8124, () => {
-    console.log('Server running...');
-});
+app.listen(8124);
+console.log('Server running...');
