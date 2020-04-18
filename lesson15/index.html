@@ -13,7 +13,10 @@
     <div id="container">
         <p>Welcome to lesson page.</p>
         <form id="myForm">
-            <input type="text" id="name">
+            <select id="rooms">
+                <option value="room-1">Room-1</option>
+                <option value="room-2">Room-2</option>
+            </select>
             <input type="text" id="msg">
             <input type="submit" value="Send">
         </form>
@@ -26,7 +29,7 @@
                     e.preventDefault();
                     socket.json.emit('emit_from_client', {
                         msg: $('#msg').val(),
-                        name: $('#name').val()
+                        room: $('#rooms').val()
                     });
                     $('#msg').val('').focus();
                 });
