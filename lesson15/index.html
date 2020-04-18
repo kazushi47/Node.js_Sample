@@ -21,7 +21,8 @@
         <script>
             $(function() {
                 var socket = io.connect();
-                $('#myForm').submit(function() {
+                $('#myForm').submit(function(e) {
+                    e.preventDefault();
                     socket.emit('emit_from_client', $('#msg').val());
                 });
                 socket.on('emit_from_server', (data) => {
