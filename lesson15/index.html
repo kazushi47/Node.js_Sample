@@ -12,9 +12,18 @@
     </header>
     <div id="container">
         <p>Welcome to lesson page.</p>
+        <form id="myForm">
+            <input type="text" id="msg">
+            <input type="submit" value="Send">
+        </form>
         <script src="/socket.io/socket.io.js"></script>
         <script>
-            
+            $(function() {
+                var socket = io.connect();
+                $('#myFrom').submit(function() {
+                    socket.emit('emit_from_client', $('#msg').val());
+                });
+            });
         </script>
     </div>
     <footer>

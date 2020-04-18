@@ -6,4 +6,10 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
+io.on('connection', (socket) => {
+    socket.on('emit_from_client', (data) => {
+        console.log(data);
+    });
+});
+
 http.listen(8124);
