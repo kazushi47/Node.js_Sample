@@ -16,12 +16,16 @@
             <input type="text" id="msg">
             <input type="submit" value="Send">
         </form>
+        <ul id="logs"></ul>
         <script src="/socket.io/socket.io.js"></script>
         <script>
             $(function() {
                 var socket = io.connect();
                 $('#myForm').submit(function() {
                     socket.emit('emit_from_client', $('#msg').val());
+                });
+                socket.on('emit_from_server', (data) => {
+                    $('#logs').append($('<li>')).text(data);
                 });
             });
         </script>
