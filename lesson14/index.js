@@ -10,5 +10,9 @@ io.on('connection', (socket) => {
     console.log('a user connected');
 });
 
+io.on('disconnect', () => {
+    console.log('user disconnected');
+});
+
 http.listen(8124);
 console.log('Server running...');
