@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+
 const app = require('express')();
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
