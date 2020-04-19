@@ -32,6 +32,9 @@
                 })
                 $('#message').val('').focus()
             })
+            socket.on('from_server', (data) => {
+                $('#messages').append($('<li>').text(data));
+            })
         })
     </script>
 </body>

@@ -11,7 +11,8 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
     socket.on('from_client', (data) => {
-        console.log(data);
+        socket.join('default-room')
+        io.to('default-room').emit('from_server', data.name + ': ' + data.message)
     })
 })
 
