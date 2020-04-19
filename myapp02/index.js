@@ -10,7 +10,9 @@ app.get('/', (req, res) => {
 })
 
 io.on('connection', (socket) => {
-    
+    socket.on('from_client', (data) => {
+        console.log(data);
+    })
 })
 
 http.listen(8124, () => {

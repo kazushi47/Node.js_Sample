@@ -6,8 +6,33 @@
     <title>Document</title>
 </head>
 <body>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <header>
         <h1>Hi</h1>
     </header>
+    <div id="container">
+        <ul id="messages"></ul>
+        <form id="messageForm">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name">
+            <label for="message">Message</label>
+            <input type="text" name="message" id="message">
+            <input type="submit" value="Send">
+        </form>
+    </div>
+    <script>
+        $(() => {
+            const socket = io.connect()
+            $('#messageForm').submit((e) => {
+                e.preventDefault()
+                socket.json.emit('from_client', {
+                    name: $('#name').val(),
+                    message: $('#message').val()
+                })
+                $('#message').val('').focus()
+            })
+        })
+    </script>
 </body>
 </html>
