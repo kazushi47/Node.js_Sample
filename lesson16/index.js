@@ -11,7 +11,8 @@ const session = require('express-session');
 const initializePassport = require('./passport-config');
 
 initializePassport(
-    passport, email => users.find(user => user.email === email),
+    passport,
+    email => users.find(user => user.email === email),
     id => users.find(user => user.id === id)
 );
 
@@ -28,6 +29,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(methodOverride('_method'));
 
 app.get('/', (req, res) => {
     res.render('index.ejs', {name: req.user.name});
