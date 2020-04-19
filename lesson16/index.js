@@ -32,6 +32,7 @@ app.post('/register', async (req, res) => {
             email: req.body.email,
             password: hashedPassword
         });
+        res.redirect('/login');
     } catch {
         res.redirect('/register');
     }
