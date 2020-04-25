@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 
 const db = 'myapp05';
-const url = 'mariadb://localhost/' + db;
+const url = 'mongodb://localhost/' + db;
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
