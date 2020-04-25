@@ -25,7 +25,7 @@
     <script>
         $(() => {
             const socket = io.connect();
-            const name = '\'' + <%= name %> + '\'';
+            const name = '<%= name %>';
             $('#form').submit((e) => {
                 e.preventDefault();
                 socket.json.emit('from client', {
