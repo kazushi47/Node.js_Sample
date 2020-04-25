@@ -29,22 +29,18 @@ app.post('/signup', (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
     if (name !== '' && email !== '') {
-        var flg = false;
         MongoClient.connect(url, (err, client) => {
             if (err) return console.dir(err);
             client.db(db).collection('users', (err, collection) => {
+                if (err) return console.dir(err);
                 const doc = {name: name, email: email};
                 collection.insertOne(doc, (err, result) => {
+                    if (err) return console.dir(err);
                     console.dir(result);
-                    flg = true;
+                    res.render('/signin');
                 });
             });
         });
-        if (flg) {
-            res.send('success!!!');
-        } else {
-            res.send('エラーが発生しました。やり直してください。');
-        }
     } else {
         res.send('未入力項目があります。やり直してください。');
     }
@@ -53,7 +49,24 @@ app.post('/signup', (req, res) => {
 app.post('/signin', (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
-    console.log('name: ' + name + ', email: ' + email);
+    if (name !== '' && email !== '') {
+        MongoClient.connect(url, (err, client) => {
+            if (err) return console.dir(err);
+            client.db(db).collection('users', (err, collection) => {
+                if (err) return console.dir(err);
+                const doc = {name: name, email: email};
+                collection.find(doc).toArray((err, documents) => {
+                    if (documents.length > 0) {
+                        res.send('ログイン成功');
+                    } else {
+                        res.send('ログインに失敗しました。');
+                    }
+                });
+            });
+        });
+    } else {
+        res.send('未入力項目があります。やり直してください。');
+    }
 });
 
 http.listen(8124);
