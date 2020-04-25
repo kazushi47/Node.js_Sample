@@ -37,7 +37,7 @@ app.post('/signup', (req, res) => {
                 collection.insertOne(doc, (err, result) => {
                     if (err) return console.dir(err);
                     console.dir(result);
-                    res.render('/signin');
+                    res.render('/in');
                 });
             });
         });
