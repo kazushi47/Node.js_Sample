@@ -73,6 +73,7 @@ io.on('connection', (socket) => {
     socket.on('from client', (data) => {
         socket.join('default-room');
         io.to('default-room').emit('from server', data.name + ': ' + data.message);
+        console.log(data);
     });
 });
 
