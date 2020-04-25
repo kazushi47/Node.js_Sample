@@ -1,1 +1,23 @@
-Sign up.
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Chat</title>
+</head>
+<body>
+    <header>
+        <h1>Sign up</h1>
+    </header>
+    <div id="container">
+        <form method="POST" action="../up">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name">
+            <label for="email">E-Mail</label>
+            <input type="email" name="email" id="email">
+            <input type="submit" value="Join!">
+        </form>
+        <a href="../signin"><p>Sign in</p></a>
+    </div>
+</body>
+</html>

@@ -14,7 +14,15 @@ app.get('/signup', (req, res) => {
 });
 
 app.get('/signin', (req, res) => {
-    res.render('up');
+    res.render('in');
+});
+
+app.post('/up', (req, res) => {
+    res.send('post ok');
+});
+
+app.post('/in', (req, res) => {
+    res.send('post ok');
 });
 
 http.listen(8124);
