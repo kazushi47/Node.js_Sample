@@ -57,7 +57,7 @@ app.post('/signin', (req, res) => {
                 const doc = {name: name, email: email};
                 collection.find(doc).toArray((err, documents) => {
                     if (documents.length > 0) {
-                        res.send('ログイン成功');
+                        res.render('home', {name: name});
                     } else {
                         res.send('ログインに失敗しました。');
                     }
@@ -67,6 +67,13 @@ app.post('/signin', (req, res) => {
     } else {
         res.send('未入力項目があります。やり直してください。');
     }
+});
+
+io.on('connection', (socket) => {
+    socket.on('from client', (data) => {
+        socket.join('default-room');
+        io.to('default-room').emit('from server', data.name + ': ' + data.message);
+    });
 });
 
 http.listen(8124);
