@@ -15,6 +15,7 @@
                 <ul id="messages">
                     <li>Easy Chat: Hi!</li>
                 </ul>
+                <p id="typing"></p>
                 <form id="form">
                     <input type="text" name="message" id="message" class="form-control" placeholder="Enter your message!" required>
                     <input type="submit" value="Send!" class="btn btn-primary">
@@ -23,13 +24,35 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script>
         $(() => {
+            const name = '<%= name %>';
+            const socket = io.connect();
+            socket.emit('join', name + ' has joined!');
+            $('#message').keydown((e) => {
+                if ($('#message').val().length == 1) {
+                    socket.emit('typing', name);
+                }
+            });
             $('#form').submit((e) => {
                 e.preventDefault();
                 const message = $('#message').val();
-                $('#messages').append($('<li>').text(message));
+                socket.json.emit('send', {
+                    name: name,
+                    message: message
+                });
                 $('#message').val('').focus();
+            });
+            socket.on('join', (data) => {
+                $('#messages').append($('<li>').text(data));
+            });
+            socket.on('typing', (data) => {
+                $('#typing').text(data + ' is typing a message...');
+            });
+            socket.on('send', (data) => {
+                $('#typing').text('');
+                $('#messages').append($('<li>').text(data.name + ': ' + data.message));
             });
         });
     </script>

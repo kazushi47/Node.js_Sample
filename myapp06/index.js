@@ -20,4 +20,17 @@ app.post('/chat', (req, res) => {
     res.render('chat', {name: name});
 });
 
+io.on('connection', (socket) => {
+    socket.on('join', (data) => {
+        socket.join('default-room');
+        io.to('default-room').emit('join', data);
+    });
+    socket.on('typing', (data) => {
+        io.to('default-room').emit('typing', data);
+    });
+    socket.on('send', (data) => {
+        io.to('default-room').emit('send', data);
+    });
+});
+
 http.listen(8124);
