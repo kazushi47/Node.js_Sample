@@ -5,16 +5,19 @@ const bodyParser = require('body-parser');
 const io = require('socket.io')(http);
 const MongoClient = require('mongodb').MongoClient;
 
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/welcome_page/index.html');
+    res.render('welcome_page/index');
 });
 
 app.post('/', (req, res) => {
     const name = req.body.name;
-    console.log('Name: ' + name);
+    res.render('chat_page/index', {name: name});
 });
 
 http.listen(8124);
