@@ -7,7 +7,10 @@ const MongoClient = require('mongodb').MongoClient;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static('public'));
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/welcome_page/index.html');
+});
 
 app.post('/', (req, res) => {
     const name = req.body.name;
