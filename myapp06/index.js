@@ -12,12 +12,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
-    res.render('welcome_page/index');
+    res.render('welcome_page');
 });
 
 app.post('/', (req, res) => {
     const name = req.body.name;
-    res.render('chat_page/index', {name: name});
+    res.render('chat_page', {name: name});
 });
 
 http.listen(8124);
