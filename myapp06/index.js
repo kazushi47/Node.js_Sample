@@ -33,7 +33,17 @@ app.get('/users', (req, res) => {
         db.collection('users').find({}).toArray((err, documents) => {
             if (err) return console.dir(err);
             res.render('users', {users: documents});
-            console.log(documents);
+        });
+    });
+});
+
+app.get('/messages', (req, res) => {
+    MongoClient.connect(url, connectOption, (err, client) => {
+        if (err) return console.dir(err);
+        const db = client.db(dbName);
+        db.collection('messages').find({}).toArray((err, documents) => {
+            if (err) return console.dir(err);
+            res.render('messages', {messages: documents});
         });
     });
 });
