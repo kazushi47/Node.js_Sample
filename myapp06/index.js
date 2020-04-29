@@ -32,7 +32,7 @@ app.get('/users', (req, res) => {
         const db = client.db(dbName);
         db.collection('users').find().toArray((err, result) => {
             if (err) return console.dir(err);
-            res.render('users', result);
+            res.render('users', {users: result});
         });
     });
 });
