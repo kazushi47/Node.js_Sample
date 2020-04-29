@@ -30,9 +30,10 @@ app.get('/users', (req, res) => {
     MongoClient.connect(url, connectOption, (err, client) => {
         if (err) return console.dir(err);
         const db = client.db(dbName);
-        db.collection('users').find().toArray((err, result) => {
+        db.collection('users').find({}).toArray((err, documents) => {
             if (err) return console.dir(err);
-            res.render('users', {users: result});
+            res.render('users', {users: documents});
+            console.log(documents);
         });
     });
 });
