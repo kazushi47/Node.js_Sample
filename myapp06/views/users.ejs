@@ -6,6 +6,8 @@
     <title>Easy Chat</title>
 </head>
 <body>
-    <p><%= users[0].name %></p>
+    <% for(var user: users) { %>
+        <p><%= user.name %></p>
+    <% } %>
 </body>
 </html>
