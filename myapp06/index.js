@@ -26,6 +26,17 @@ app.post('/chat', (req, res) => {
     res.render('chat', {name: name});
 });
 
+app.get('/users', (req, res) => {
+    MongoClient.connect(url, connectOption, (err, client) => {
+        if (err) return console.dir(err);
+        const db = client.db(dbName);
+        db.collection('users').find().toArray((err, result) => {
+            if (err) return console.dir(err);
+            res.render('users', result);
+        });
+    });
+});
+
 io.on('connection', (socket) => {
     socket.on('join', (data) => {
         socket.join('default-room');
